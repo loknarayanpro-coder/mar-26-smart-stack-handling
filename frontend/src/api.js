@@ -4,7 +4,7 @@ import axios from 'axios';
 // In production, set VITE_API_BASE_URL e.g. https://your-server.com/api
 const baseURL =
     import.meta.env.VITE_API_BASE_URL ||
-    (import.meta.env.DEV ? '/api' : 'http://127.0.0.1:5001/api');
+    (import.meta.env.DEV ? '/api' : 'https://smart-stack-handling.onrender.com/api');
 
 const api = axios.create({
     baseURL,
