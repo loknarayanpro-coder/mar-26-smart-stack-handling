@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker Prototype</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="app-container">
+            <!-- Screen 1: Dashboard -->
+            <div id="dashboard-screen" class="screen active">
+                <header>
+                    <div class="header-top">
+                        <div>
+                            <p class="greeting">Good morning,</p>
+                            <h1 class="user-name">Alex</h1>
+                        </div>
+                        <img src="https://i.pravatar.cc/150?img=11" alt="Profile" class="avatar">
+                    </div>
+                    
+                    <div class="date-slider">
+                        <div class="date-item">
+                            <span class="day">Mon</span>
+                            <span class="date">15</span>
+                        </div>
+                        <div class="date-item">
+                            <span class="day">Tue</span>
+                            <span class="date">16</span>
+                        </div>
+                        <div class="date-item active">
+                            <span class="day">Wed</span>
+                            <span class="date">17</span>
+                        </div>
+                        <div class="date-item">
+                            <span class="day">Thu</span>
+                            <span class="date">18</span>
+                        </div>
+                        <div class="date-item">
+                            <span class="day">Fri</span>
+                            <span class="date">19</span>
+                        </div>
+                    </div>
+                </header>
+
+                <main>
+                    <div class="progress-card">
+                        <div class="progress-info">
+                            <h2>Daily Goal</h2>
+                            <p>3 of 5 completed</p>
+                        </div>
+                        <div class="circular-progress">
+                            <svg viewBox="0 0 36 36" class="circular-chart">
+                                <path class="circle-bg"
+                                  d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                                />
+                                <path class="circle"
+                                  stroke-dasharray="60, 100"
+                                  d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                                />
+                            </svg>
+                            <div class="percentage">60%</div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">
+                        <h3>Today's Habits</h3>
+                        <button class="see-all">See all</button>
+                    </div>
+
+                    <div class="habit-list">
+                        <div class="habit-card completed" onclick="toggleHabit(this)">
+                            <div class="habit-icon" style="background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <div class="habit-details">
+                                <h4>Drink Water</h4>
+                                <p>8 glasses</p>
+                            </div>
+                            <div class="check-btn"><i class="fas fa-check"></i></div>
+                        </div>
+
+                        <div class="habit-card completed" onclick="toggleHabit(this)">
+                            <div class="habit-icon" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <div class="habit-details">
+                                <h4>Read a Book</h4>
+                                <p>30 minutes</p>
+                            </div>
+                            <div class="check-btn"><i class="fas fa-check"></i></div>
+                        </div>
+
+                        <div class="habit-card completed" onclick="toggleHabit(this)">
+                            <div class="habit-icon" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b;">
+                                <i class="fas fa-running"></i>
+                            </div>
+                            <div class="habit-details">
+                                <h4>Morning Run</h4>
+                                <p>5 km</p>
+                            </div>
+                            <div class="check-btn"><i class="fas fa-check"></i></div>
+                        </div>
+
+                        <div class="habit-card pending" onclick="toggleHabit(this)">
+                            <div class="habit-icon" style="background: rgba(59, 130, 246, 0.2); color: #3b82f6;">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="habit-details">
+                                <h4>Learn Coding</h4>
+                                <p>1 hour</p>
+                            </div>
+                            <div class="check-btn"><i class="fas fa-check"></i></div>
+                        </div>
+
+                        <div class="habit-card pending" onclick="toggleHabit(this)">
+                            <div class="habit-icon" style="background: rgba(236, 72, 153, 0.2); color: #ec4899;">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                            <div class="habit-details">
+                                <h4>Sleep Early</h4>
+                                <p>10:00 PM</p>
+                            </div>
+                            <div class="check-btn"><i class="fas fa-check"></i></div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Screen 2: Add Habit -->
+            <div id="add-screen" class="screen">
+                <header class="simple-header">
+                    <h2>New Habit</h2>
+                </header>
+                <main>
+                    <div class="form-group">
+                        <label>Habit Name</label>
+                        <input type="text" placeholder="E.g., Meditation">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Category</label>
+                        <div class="category-grid">
+                            <div class="category-btn active"><i class="fas fa-heartbeat"></i> Health</div>
+                            <div class="category-btn"><i class="fas fa-brain"></i> Mind</div>
+                            <div class="category-btn"><i class="fas fa-briefcase"></i> Work</div>
+                            <div class="category-btn"><i class="fas fa-paint-brush"></i> Hobby</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Frequency</label>
+                        <div class="frequency-chips">
+                            <div class="chip active">Daily</div>
+                            <div class="chip">Weekly</div>
+                            <div class="chip">Custom</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Reminder</label>
+                        <input type="time" value="08:00">
+                    </div>
+
+                    <button class="primary-btn" onclick="showDashboard()">Create Habit</button>
+                </main>
+            </div>
+
+            <!-- Screen 3: Settings -->
+            <div id="settings-screen" class="screen">
+                <header class="simple-header">
+                    <h2>Settings</h2>
+                </header>
+                <main>
+                    <div class="settings-list">
+                        <div class="settings-item">
+                            <div class="settings-icon"><i class="fas fa-bell"></i></div>
+                            <div class="settings-text">Notifications</div>
+                            <div class="toggle active"></div>
+                        </div>
+                        <div class="settings-item">
+                            <div class="settings-icon"><i class="fas fa-moon"></i></div>
+                            <div class="settings-text">Dark Mode</div>
+                            <div class="toggle active"></div>
+                        </div>
+                        <div class="settings-item">
+                            <div class="settings-icon"><i class="fas fa-sync"></i></div>
+                            <div class="settings-text">Sync with Cloud</div>
+                            <div class="toggle"></div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <nav class="bottom-nav">
+                <div class="nav-item active" onclick="switchTab('dashboard')">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('stats')">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Stats</span>
+                </div>
+                <div class="nav-fab" onclick="switchTab('add')">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="nav-item" onclick="switchTab('community')">
+                    <i class="fas fa-users"></i>
+                    <span>Social</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('settings')">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
